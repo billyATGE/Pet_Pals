@@ -1,5 +1,4 @@
 # import necessary libraries
-from models import create_classes
 import os
 from flask import (
     Flask,
@@ -25,7 +24,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-Pet = create_classes(db)
+from .models import Pet
+
 
 # create route that renders index.html template
 @app.route("/")
@@ -65,7 +65,7 @@ def pals():
         "text": hover_text,
         "hoverinfo": "text",
         "marker": {
-            "size": 50,
+            "size": 15,
             "line": {
                 "color": "rgb(8,8,8)",
                 "width": 1
